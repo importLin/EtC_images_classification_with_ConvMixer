@@ -138,7 +138,7 @@ def main():
     mb_num = (224 // mb_size) ** 2
     sb_nums = (mb_size // sb_size) ** 2
 
-    key_seed = "imgs/plain_samples/Aerial.bmp"
+    key_seed = "imgs/plain_samples/Aerial.png"
     hash_val = get_hash_val(key_seed)
     print("hash_value:", hash_val)
 
