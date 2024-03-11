@@ -48,7 +48,7 @@ def main():
     saving_root = f"imgs/etc_samples/{b_size}_{sb_size}"
     if os.path.exists(saving_root) is False:
         print("Creating saving Folder..")
-        os.makedirs(saving_root)
+        os.majikedirs(saving_root)
 
     single_key = unpickle(f"key_set/single/{b_size}_{sb_size}_dict")
     multiple_key = unpickle(f"key_set/multiple/{b_size}_{sb_size}_dict")
