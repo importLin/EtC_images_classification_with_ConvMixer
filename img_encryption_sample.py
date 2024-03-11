@@ -41,8 +41,8 @@ class ImgGenerator(ImgBlockOp):
 def main():
     img_name = "lena.png"
     img_size = 224
-    b_size = 14
-    sb_size = 7
+    b_size = 16
+    sb_size = 8
 
     img_path = f"imgs/plain_samples/{img_name}"
     saving_root = f"imgs/etc_samples/{b_size}_{sb_size}"
