@@ -42,13 +42,13 @@ def main():
     img_name = "lena.png"
     img_size = 224
     b_size = 16
-    sb_size = 8
+    sb_size = 16
 
     img_path = f"imgs/plain_samples/{img_name}"
     saving_root = f"imgs/etc_samples/{b_size}_{sb_size}"
     if os.path.exists(saving_root) is False:
         print("Creating saving Folder..")
-        os.majikedirs(saving_root)
+        os.makedirs(saving_root)
 
     single_key = unpickle(f"key_set/single/{b_size}_{sb_size}_dict")
     multiple_key = unpickle(f"key_set/multiple/{b_size}_{sb_size}_dict")

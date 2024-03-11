@@ -133,8 +133,8 @@ def unpickle(file):
 
 
 def main():
-    mb_size = 14
-    sb_size = 7
+    mb_size = 16
+    sb_size = 16
     mb_num = (224 // mb_size) ** 2
     sb_nums = (mb_size // sb_size) ** 2
 
