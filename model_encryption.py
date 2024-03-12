@@ -37,7 +37,7 @@ class ModelCipher(ModelBlockOp):
             sm = self.block_routing(sm, self.key_sets["sb_rotation"][p_index][j])
             sm = self.block_flipping(sm, self.key_sets["sb_flipping"][p_index][j])
             sm = self.np_transformation(sm, self.key_sets["sb_NPtrans"][p_index][j])
-            sm = self.c_shuffling(sm, self.key_sets["sb_c_shuffling"][p_index][j], 1)
+            sm = self.c_shuffling(sm, self.key_sets["sb_c_shuffling"][p_index][j])
 
             sm_list[j] = sm
 

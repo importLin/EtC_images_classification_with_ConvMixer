@@ -1,8 +1,6 @@
 from copy import deepcopy
 import torch
 import numpy as np
-import cv2
-
 
 class ImgBlockOp:
     def block_segmentation(self, main_mat, sb_size):
@@ -75,14 +73,11 @@ class ImgBlockOp:
 
         return block
 
-    def c_shuffling(self, block, key, e_mode):
-        r, g, b = self.channel_split(block)
-        if e_mode:
-            opt_order = ((r, g, b), (r, b, g), (g, r, b), (g, b, r), (b, r, g), (b, g, r))
-        else:
-            opt_order = ((r, g, b), (r, b, g), (g, r, b),  (b, r, g), (g, b, r), (b, g, r))
-
-        block[0, :, :], block[1, :, :], block[2, :, :] = opt_order[key]
+    def c_shuffling(self, block, key):
+        r, g, b = block[0], block[1], block[2]
+        block_copy = deepcopy(block)
+        channels_order = ((r, g, b), (r, b, g), (g, r, b), (g, b, r), (b, r, g), (b, g, r))
+        block[0], block[1], block[2] = channels_order[key]
         return block
 
     def channel_split(self, block):
@@ -166,14 +161,10 @@ class ModelBlockOp:
         r, g, b = torch.split(block, 1, dim=1)
         return [r, g, b]
 
-    def c_shuffling(self, block, key, e_mode):
+    def c_shuffling(self, block, key):
         block_copy = deepcopy(block)
         r, g, b = torch.split(block_copy, 1, dim=1)
-        if e_mode:
-            opt_order = ((r, g, b), (r, b, g), (g, r, b), (g, b, r), (b, r, g), (b, g, r))
-        else:
-            opt_order = ((r, g, b), (r, b, g), (g, r, b),  (b, r, g), (g, b, r), (b, g, r))
-
-        block = torch.cat(opt_order[key], dim=1)
+        channels_order = ((r, g, b), (r, b, g), (g, r, b), (g, b, r), (b, r, g), (b, g, r))
+        block = torch.cat(channels_order[key], dim=1)
         return block
 

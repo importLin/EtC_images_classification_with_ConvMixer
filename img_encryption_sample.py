@@ -26,7 +26,7 @@ class ImgGenerator(ImgBlockOp):
                 sb = self.block_routing(sb, self.key_sets["sb_rotation"][i][j])
                 sb = self.block_flipping(sb, self.key_sets["sb_flipping"][i][j])
                 sb = self.np_transformation(sb, self.key_sets["sb_NPtrans"][i][j])
-                sb = self.c_shuffling(sb, self.key_sets["sb_c_shuffling"][i][j], 1)
+                sb = self.c_shuffling(sb, self.key_sets["sb_c_shuffling"][i][j])
 
                 sb_list[j] = sb
 
