@@ -62,7 +62,7 @@ def val_one_epoch(model, data_loader, logger, device):
 
 def main():
     img_size = 224
-    patch_size = (16, 16)
+    patch_size = 16
     sb_size = 8
     out_channels = 1024
     encrypted_model_used = 1
@@ -86,18 +86,18 @@ def main():
 
         model.stem[0] = conv_initialize(out_channels, img_size, patch_size, weights_root)
 
-        logger = create_logger(log_root, f"encrypted_{patch_size[0]}_{sb_size}")
+        logger = create_logger(log_root, f"encrypted_{patch_size}_{sb_size}")
         testing_set = Cifar(imgs_root, transformer)
 
     else:
-        logger = create_logger("testing_log", f"baseline_p{patch_size[0]}")
+        logger = create_logger("testing_log", f"baseline_p{patch_size}")
         testing_set = Cifar("imgs/CIFAR10_samples", transformer)
 
     testing_loader = DataLoader(
         testing_set,
         batch_size=10,
         shuffle=False,
-        drop_last=False
+        drop_last=True
     )
     #
     for epoch in range(1):
